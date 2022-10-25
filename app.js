@@ -11,10 +11,15 @@ var db;
 
 
 // Initialize connection once
-const uri = "null";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, directConnection: true});
+// dedicatedazurecali1-shard-00-02.99bvq.mongodb.net:27017
+// const uri = "mongodb+srv://ayu123:"+process.env.Mongopass+"@dedicatedazurecali1.99bvq.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb://ayu123:"+process.env.Mongopass+"@dedicatedazurecali1-shard-00-02.99bvq.mongodb.net:27017/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, tls: true, directConnection: true });
 client.connect(err => {
-  if(err) throw err;
+  if(err) {
+    console.log(err)
+    throw err;
+  } 
   db = client.db('DBTest');
   //executing queries to know times
   getAllChildren();
