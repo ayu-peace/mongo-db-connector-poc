@@ -11,9 +11,8 @@ var db;
 
 
 // Initialize connection once
-const uri = "mongodb://ayu123:ayu123@dedicatedazurecali1.99bvq.mongodb.net:27017/test";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true});
-// MongoClient.connect("mongodb+srv://ayu123:ayu123@cluster0.daagny6.mongodb.net/test", function(err, client) {
+const uri = "null";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, directConnection: true});
 client.connect(err => {
   if(err) throw err;
   db = client.db('DBTest');
