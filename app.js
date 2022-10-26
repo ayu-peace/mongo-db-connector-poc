@@ -12,9 +12,11 @@ var db;
 
 // Initialize connection once
 // dedicatedazurecali1-shard-00-02.99bvq.mongodb.net:27017
-// const uri = "mongodb+srv://ayu123:"+process.env.Mongopass+"@dedicatedazurecali1.99bvq.mongodb.net/?retryWrites=true&w=majority";
-const uri = "mongodb://ayu123:"+process.env.Mongopass+"@dedicatedazurecali1-shard-00-02.99bvq.mongodb.net:27017/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, tls: true, directConnection: true });
+//const uri = "mongodb+srv://ayu123:"+process.env.Mongopass+"@dedicatedazurecali1.99bvq.mongodb.net/?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://ayu123:"+process.env.Mongopass+"@sharedazurepune.wflc2a8.mongodb.net/test";
+const uri = "mongodb+srv://ayu123:"+process.env.Mongopass+"@dedicatedazurecali1.99bvq.mongodb.net/test"
+// const uri = "mongodb://ayu123:4KNz5Ntui92gC3ZY@dedicatedazurecali1-shard-00-01.99bvq.mongodb.net:27017/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true})//, tls: true, directConnection: true });
 client.connect(err => {
   if(err) {
     console.log(err)
@@ -22,8 +24,8 @@ client.connect(err => {
   } 
   db = client.db('DBTest');
   //executing queries to know times
-  getAllChildren();
-  getAllParents();
+  // getAllChildren();
+  // getAllParents();
   getFolder();
 
 // Start the application after the database connection is ready
@@ -262,8 +264,8 @@ const getFolder = async () => {
   const startTime = Date.now();
   const folderResp = await folders.findOne({foldId: foldId});
   const endTime = Date.now();
-  console.log("Folder info:", folderResp);
   console.log("Get /folder by id resp time: " + (endTime - startTime));
+  console.log("Folder info:", folderResp);
 }
 
 module.exports = app;
