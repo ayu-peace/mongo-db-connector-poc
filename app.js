@@ -79,7 +79,6 @@ let getChildrenC = 0;
 app.get("/children", async function(req, res) {
   const startTime = Date.now();
   const respAggTopDown = db.collection('Folders').aggregate( [
-    { "$match": { "foldId": "1" } },
     {
        $graphLookup: {
           from: "Folders",
@@ -87,9 +86,10 @@ app.get("/children", async function(req, res) {
           connectFromField: "foldId",
           connectToField: "parentId",
           "as": "children",
-          restrictSearchWithMatch: {access: 'allowed'}
+          // restrictSearchWithMatch: {access: 'allowed'}
         }
     },
+    { "$match": { "foldId": "1" } },
     ]);
     for await (const doc of respAggTopDown) {
       // console.log(doc);
