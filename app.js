@@ -26,7 +26,7 @@ client.connect(err => {
   //executing queries to know times
   // getAllChildren();
   // getAllParents();
-  getFolder();
+  //getFolder();
 
 // Start the application after the database connection is ready
   app.listen(3000);
@@ -92,7 +92,7 @@ app.get("/children", async function(req, res) {
     { "$match": { "foldId": "1" } },
     ]);
     for await (const doc of respAggTopDown) {
-      // console.log(doc);
+       //console.log(doc);
     }
   const endTime = Date.now();
   console.log("Get /children resp time: " + (endTime - startTime));
@@ -198,11 +198,11 @@ app.post("/createTree", async function(req, res) {
 
 app.get("/timestamps", async function(req, res) {
   console.log("Timestamps");
-  console.log("getFolderTT", (getFolderTT/getFolderC), getFolderMT);
-  console.log("getChildrenTT", (getChildrenTT/getChildrenC), getChildrenMT);
-  console.log("getParentsTT", (getParentsTT/getParentsC), getParentsMT);
-  console.log("postAddFoldersTT", (postAddFoldersTT/postAddFoldersC), postAddFoldersMT);
-  console.log("putFoldersTT", (putFoldersTT/putFoldersC), putFoldersMT);
+  console.log("getFolderTT", (getFolderTT/getFolderC), getFolderMT, getFolderC);
+  console.log("getChildrenTT", (getChildrenTT/getChildrenC), getChildrenMT, getChildrenC);
+  console.log("getParentsTT", (getParentsTT/getParentsC), getParentsMT, getParentsC);
+  console.log("postAddFoldersTT", (postAddFoldersTT/postAddFoldersC), postAddFoldersMT, postAddFoldersC);
+  console.log("putFoldersTT", (putFoldersTT/putFoldersC), putFoldersMT, putFoldersC);
   res.send("Success");
 });
 
